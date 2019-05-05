@@ -19,6 +19,12 @@ def restaurantMenuJSON(restaurant_id):
     items = session.query(MenuItem).filter_by(restaurant_id=restaurant.id)
     return jsonify(MenuItems = [i.serialize for i in items])
 
+#Making another API Endpoint (GET Request) for one menu item
+@app.route('/restaurants/<int:restaurant_id>/menu/<int:menu_id>/JSON')
+def restaurantMenuItemJSON(restaurant_id, menu_id):
+    items = session.query(MenuItem).filter_by(id=menu_id)
+    return jsonify(MenuItems = [i.serialize for i in items])
+
 
 @app.route('/')
 @app.route('/restaurants/<int:restaurant_id>/')
